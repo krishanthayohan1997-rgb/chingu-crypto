@@ -1,0 +1,43 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+function App() {
+  const [btc, setBtc] = useState(0);
+  const [eth, setEth] = useState(0);
+  const [sol, setSol] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd"
+      )
+      .then((res) => {
+        setBtc(res.data.bitcoin.usd);
+        setEth(res.data.ethereum.usd);
+        setSol(res.data.solana.usd);
+      });
+  }, []);
+
+  return (
+    <div style={{ background: "#111", minHeight: "100vh", color: "white", padding: "20px", textAlign: "center" }}>
+      <h1>🚀 CHINGU Crypto</h1>
+
+      <div style={{ background: "#222", padding: "15px", borderRadius: "10px", marginTop: "20px" }}>
+        <h3>BTC</h3>
+        <p>${btc}</p>
+      </div>
+
+      <div style={{ background: "#222", padding: "15px", borderRadius: "10px", marginTop: "20px" }}>
+        <h3>ETH</h3>
+        <p>${eth}</p>
+      </div>
+
+      <div style={{ background: "#222", padding: "15px", borderRadius: "10px", marginTop: "20px" }}>
+        <h3>SOL</h3>
+        <p>${sol}</p>
+      </div>
+    </div>
+  );
+}
+
+export default App;
