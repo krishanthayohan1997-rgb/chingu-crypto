@@ -1,43 +1,50 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-function App() {
-  const [btc, setBtc] = useState(0);
-  const [eth, setEth] = useState(0);
-  const [sol, setSol] = useState(0);
-
-  useEffect(() => {
-    axios
-      .get(
-        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd"
-      )
-      .then((res) => {
-        setBtc(res.data.bitcoin.usd);
-        setEth(res.data.ethereum.usd);
-        setSol(res.data.solana.usd);
-      });
-  }, []);
-
-  return (
-    <div style={{ background: "#111", minHeight: "100vh", color: "white", padding: "20px", textAlign: "center" }}>
-      <h1>🚀 CHINGU Crypto</h1>
-
-      <div style={{ background: "#222", padding: "15px", borderRadius: "10px", marginTop: "20px" }}>
-        <h3>BTC</h3>
-        <p>${btc}</p>
-      </div>
-
-      <div style={{ background: "#222", padding: "15px", borderRadius: "10px", marginTop: "20px" }}>
-        <h3>ETH</h3>
-        <p>${eth}</p>
-      </div>
-
-      <div style={{ background: "#222", padding: "15px", borderRadius: "10px", marginTop: "20px" }}>
-        <h3>SOL</h3>
-        <p>${sol}</p>
-      </div>
-    </div>
-  );
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
 }
 
-export default App;
+.app {
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  color: #0066ff;
+}
+
+.card {
+  background: linear-gradient(135deg, #0066ff, #00aaff);
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.buttons button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #0066ff;
+  color: white;
+  cursor: pointer;
+}
+
+.tx {
+  background: white;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
